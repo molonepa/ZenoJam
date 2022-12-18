@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/CaveGenerator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/Game.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+
+[node name="Game" type="Node2D"]
+position = Vector2( 0, -98 )
+script = ExtResource( 4 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -130.0
+margin_top = -98.0
+margin_right = 130.0
+margin_bottom = 98.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="World"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+format = 1
+
+[node name="CaveGenerator" parent="World/TileMap" instance=ExtResource( 3 )]
+map_width = 16
+map_height = 12
+world_seed = "ZenoJam"
+noise_persistence = 0.174
+noise_lacunarity = 0.57
+noise_threshold = 0.15
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -120, 88 )
