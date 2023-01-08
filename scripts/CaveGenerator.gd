@@ -39,9 +39,15 @@ func generate() -> void:
 		for y in range(-self.map_height / 2, self.map_height / 2):
 			if self.simplex_noise.get_noise_2d(x, y) < self.noise_threshold:
 				self._set_autotile(x, y)
+			else:
+				self._set_dirt_tile(x, y)
 
 	self.tile_map.update_dirty_quadrants()
 
 func _set_autotile(x : int, y : int) -> void:
 	self.tile_map.set_cell(x, y, self.tile_map.get_tileset().get_tiles_ids()[0], false, false, false, self.tile_map.get_cell_autotile_coord(x, y))
+	self.tile_map.update_bitmask_area(Vector2(x, y))
+
+func _set_dirt_tile(x : int, y : int) -> void:
+	self.tile_map.set_cell(x, y, self.tile_map.get_tileset().get_tiles_ids()[1], false, false, false, self.tile_map.get_cell_autotile_coord(x, y))
 	self.tile_map.update_bitmask_area(Vector2(x, y))

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/heavy-bubbles-35889.mp3-67c472108dfd8d4ce112622d5e6a5de1.mp3str"
+
+[deps]
+
+source_file="res://assets/heavy-bubbles-35889.mp3"
+dest_files=[ "res://.import/heavy-bubbles-35889.mp3-67c472108dfd8d4ce112622d5e6a5de1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

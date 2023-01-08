@@ -1,24 +1,19 @@
 extends Control
 
 onready var start_button = $MarginContainer/VBoxContainer/VBoxContainer/StartButton
-onready var options_button = $MarginContainer/VBoxContainer/VBoxContainer/OptionsButton
-onready var credits_button = $MarginContainer/VBoxContainer/VBoxContainer/CreditsButton
+onready var controls_button = $MarginContainer/VBoxContainer/VBoxContainer/ControlsButton
 onready var quit_button = $MarginContainer/VBoxContainer/VBoxContainer/QuitButton
 
 func _ready() -> void:
 	start_button.connect("pressed", self, "_on_start")
-	options_button.connect("pressed", self, "_on_options")
-	credits_button.connect("pressed", self, "_on_credits")
+	controls_button.connect("pressed", self, "_on_controls")
 	quit_button.connect("pressed", self, "_on_quit")
 
 func _on_start() -> void:
-	get_tree().change_scene("res://scenes/Game.tscn")
+	get_tree().change_scene("res://scenes/Intro.tscn")
 
-func _on_options() -> void:
-	print('Options pressed')
-
-func _on_credits() -> void:
-	print('Credits pressed')
+func _on_controls() -> void:
+	get_tree().change_scene("res://scenes/ControlsMenu.tscn")
 
 func _on_quit() -> void:
 	get_tree().quit()

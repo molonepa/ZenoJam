@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/lava.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Lava.gd" type="Script" id=2]
+[ext_resource path="res://assets/light_linear.png" type="Texture" id=3]
+[ext_resource path="res://assets/heavy-bubbles-35889.mp3" type="AudioStream" id=4]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += sin(0.25 * TIME) * 0.75;
+	newuv.y += 0.25 * TIME;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 8 )
+
+[node name="Lava" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 3 )
+margin_left = -128.0
+margin_top = -8.0
+margin_right = 128.0
+margin_bottom = 78.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, -15.5 )
+scale = Vector2( 1, 0.730469 )
+texture = ExtResource( 3 )
+color = Color( 1, 0.654902, 0.490196, 1 )
+energy = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 1.0
+autoplay = true
+attenuation = 12.0
